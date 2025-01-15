@@ -1,0 +1,18 @@
+[
+    { "name": "Dr. Pérez", 
+      "specialty": "Cardiología", 
+      "yearsOfExperience": 10
+    },
+    { "name": "Dr. Gómez", 
+      "specialty": "Pediatría", 
+      "yearsOfExperience": 8 
+    },
+    { "name": "Dr. Rojas", 
+    "specialty": "Cardiología", 
+    "yearsOfExperience": 10
+    },
+    { "name": "Dr. Medina", 
+    "specialty": "Pediatría", 
+    "yearsOfExperience": 8 
+    }
+  ]
