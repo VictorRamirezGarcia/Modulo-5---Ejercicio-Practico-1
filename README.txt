@@ -66,81 +66,75 @@ Ejemplo de como se visualizaria en tu consola:
 
 
 
-Actualizaciones README especificar Modulo 4 - Ejercicio Practico 3
-
-Ejercicio Práctico: Integración Completa del Sistema del Hospital con ReactJS
+Actualizaciones README - Aprendizaje Basado en Proyectos: Consumo de API en el Sistema del Hospital
 
 Contexto:
-En este ejercicio práctico, los estudiantes aplicarán todo lo aprendido sobre ReactJS para crear
-un sistema completo para el hospital. Implementarán componentes reutilizables, optimizarán
-el rendimiento, y manejarán interacciones complejas con datos a través de APIs. Todas las
-vistas del sistema del hospital (Home, Servicios, Equipo Médico, Citas) deberán integrar
-componentes avanzados y técnicas de optimización de ReactJS.
+
+En este proyecto, los estudiantes deberán implementar el consumo de una API para obtener y
+mostrar datos del sistema del hospital, como la información de doctores o servicios médicos.
+Utilizando useEffect y useState, se espera que realicen peticiones asíncronas, gestionen el
+estado y manejen los errores de manera eficiente. Podrán utilizar Fetch API o Axios según su
+preferencia.
 
 
 
 Requisitos:
-1. Implementación de Vistas Complejas con ReactJS (1.5 puntos)
-- Crea y estructura tres vistas principales del sistema del hospital usando componentes avanzados:
-- Vista Principal (Home): Incluye una lista de servicios destacados y una sección con información del hospital.
-- Vista del Equipo Médico: Muestra los perfiles de doctores utilizando componentes DoctorCard para cada miembro del equipo, permitiendo filtrar por especialidad.
-- Vista de Citas: Implementa un formulario para agendar citas con validaciones y uso de Hooks (useState, useEffect).
+
+1. Implementación de Peticiones con useEffect y useState (2 puntos)
+- Usa los Hooks useEffect y useState para realizar peticiones a una API externa (puedes
+simular una API REST) que devuelva datos relacionados con los servicios médicos o el
+equipo de doctores del hospital.
+- Asegúrate de que los datos se carguen cuando el componente se monte en el
+DOM.
+- Los datos deben mostrarse correctamente en una lista o tabla en la vista
+correspondiente.
 
 Respuesta:
-Se han creado tres vistas complejas para representar las tres grandes secciones de la pagina del hospital, las cuales son las siguientes:
-
-Home: la cual incluye el listado de lo servicios medicos que entrega el hospital y una seccion de saludos inicial con informacion del hospital.
-Medical Team: la cual muestra el listado de doctores del hospital y ademas permite filtrar a los doctores por su especialidad.
-Contact: la cual incluye un formulario para hacer el agendamiento de citas pudiendo ingresar el nombre del paciente, seleccionar el medico y la fecha de la cita.
+Se utilizan los Hooks useEffect y useState en el componente "ServiceList" ya que se cargan los datos de un archivo json llamado "servicios.json" cuando se monta el componente para mostrar los doctores del hospital. Aunque no se cargue de forma automatica ya que le he colocado un boton que al precionarlo carga el listado de los servicios para resolver el punto 3.
 
 
 
-2. Optimización del DOM Virtual y Uso de Fragmentos (1 punto)
-- Usa el DOM Virtual para gestionar eficientemente la actualización de datos en las diferentes vistas, asegurando que solo los elementos necesarios se actualicen.
-- Implementa Fragmentos (<React.Fragment>) para evitar añadir nodos innecesarios en el DOM y mejorar la estructura del código en las diferentes secciones del sistema.
-
-Respuesta:
-En las vistas de "home" y "medical team" se actualizan eficientemente el DOM Virtual de los servicos medicos y los doctores respectivamente. Ademas en la pagina "home" y sy componente que utiliza hemos utilizando los Fragmentos para evitar añadir nodos innecesarios.
-
-
-
-3. Uso de Referencias y Callbacks (1.5 puntos)
-- Implementa referencias para interactuar con los elementos del DOM en una de las vistas, como:
-- Enfocar automáticamente en un campo de entrada cuando el usuario ingresa a la vista de Citas.
-- Usar referencias de callback para gestionar el desplazamiento a diferentes secciones de la vista Home.
+2. Uso de Fetch API o Axios para el Consumo de la API (1.5 puntos)
+- Implementa las peticiones a la API utilizando Fetch API o Axios para obtener los datos
+de manera asíncrona.
+- Explica en el README por qué has elegido una u otra opción.
+- Asegúrate de manejar correctamente los errores de la petición (por ejemplo,
+mostrar un mensaje de error si la API no responde o devuelve un error).
 
 Respuesta:
-En la vista llamada "Contact" y el componente que llama "AppointmentForm" se usa referencia para crear una constante que referencia el campo del nombre del paciente y luego con dicha referencia se enfoca dicho campo al entrar en la pagina de "Contact".
-Tambien se agregaron referencias que apuntan a la seccion del listado de los Doctores desde la pagina de "home". al cual se puede llegar haciendo clic en el boton que dice "Ir a Doctores" desde el home.
+En la carga de los datos de los Doctores del componente "DoctorCard" se esta utilizando el llamado a un archivo json que estaria emulando una llamada a una API externa esto en la pagina de la View "medical-team". Esta llamada utiliza Fetch API dado que en nativo de JavaScript y no require dependecias externas como el caso de Axios.Tambien  se le coloco un manejo de los errores para el caso de que la llamada a la API no devuelva datos le envia el siguiente mensaje "Error al cargar los doctores"
 
 
 
-4. Manejo de Datos con API REST Simulada (1.5 puntos)
-- Simula la obtención de datos del equipo médico y servicios a través de una API REST utilizando fetch y maneja las respuestas de manera asíncrona con async/await.
-- Carga los datos en la vista correspondiente (Equipo Médico, Servicios) al montar el componente, utilizando Hooks como useEffect.
-
-Respuesta:
-En el componente llamado "ServiceList" se estan cargando los datos de los servicios desde un JSON a traves de un fetch y manejando las respuesta de manera asincrona con async/await
-
-
-
-5. Optimización de Rendimiento y Uso de Profiler (1 punto)
-- Usa Profiler para identificar posibles problemas de rendimiento y optimiza la renderización de componentes que manejan grandes volúmenes de datos, como la lista de doctores o servicios.
+3. Peticiones Basadas en Eventos del Usuario (1 punto)
+- Permite que el usuario realice una petición a la API mediante una interacción, como un
+botón para recargar la lista de doctores o servicios médicos.
+- Asegúrate de que el botón realice la petición y actualice los datos en la interfaz.
 
 Respuesta:
-Se ha utilizado "Profiler" dentro de la pagina "App.jsx" para poder mostrar por consola los tiempos de carga de los distintos componentes de la pagina del hospital. Como se muestra a continuacion:
-
-  const handleRender = (id, phase, actualDuration) => {
-    console.log(`${id} render phase: ${phase}, duration: ${actualDuration}`);
-  };
+En la vista llamada "home.jsx" se cargan los servicios por medio de un boton llamado "Recargar Servicios" el cual carga en la misma pantalla el lustado de los servicios del componente llamado "ServiceList" mostrandolo por pantalla.
 
 
 
-6. Comprobación de Tipos con PropTypes (0.5 puntos)
-- Implementa PropTypes en todos los componentes para verificar los tipos de datos y asegurar que los valores pasados como props son válidos, evitando errores en la aplicación.
+4. Manejo de Errores en Peticiones Asíncronas (1 punto)
+- Implementa una estrategia de manejo de errores cuando la API falle o no responda.
+- Muestra un mensaje en la interfaz indicando que ocurrió un error, y permite al
+usuario intentar realizar la petición nuevamente.
 
-Respuesta: 
-Se han implementado PropTypes en todos los componentes para verificar los tidpos de datos y asegurar que los valores pasados sean validos.
+Respuesta:
+En la vista llamada "home.jsx" se cargan los servicios por medio de un boton llamado "Recargar Servicios" el cual carga en la misma pantalla el lustado de los servicios del componente llamado "ServiceList" mostrandolo por pantalla. Tambien  se le coloco un manejo de los errores para el caso de que la llamada a la API no devuelva datos le envia el siguiente mensaje "Error al cargar los doctores"
+
+
+
+5. Optimización del Rendimiento al Omitir Efectos en useEffect (0.5
+puntos)
+- Implementa una optimización en useEffect para evitar que las peticiones se realicen
+múltiples veces innecesariamente. Asegúrate de que la petición se realice solo cuando
+el componente se monte o cuando haya un cambio relevante (por ejemplo, al hacer clic
+en el botón para recargar los datos).
+
+Respuesta:
+Para ello la carga del componente solo se realiza una vez cuando se carga la vista por medio de los corchetes cuadrados al final de la declaracion de metodo que asegura que solo se ejecute una vez el componente.
 
 
 
